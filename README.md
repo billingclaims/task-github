@@ -102,36 +102,60 @@ Returns interactive embed with:
 
 ## Heroku Deployment 🚀
 
-1. **Prepare Application**
+**First-Time Setup:**
+1. Install Heroku CLI
+```bash
+npm install -g heroku
+heroku login
+```
+
+2. Initialize Git (if not already done)
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+3. Create Heroku App
 ```bash
 heroku create your-app-name
+heroku git:remote -a your-app-name
+```
+
+4. Add Required Buildpack
+```bash
+heroku buildpacks:set heroku/nodejs
+```
+
+**Deployment Steps:**
+1. Push Code to Heroku
+```bash
 git push heroku main
 ```
 
-2. **Set Configuration**
+2. Install Config Plugin & Set Environment
 ```bash
-heroku config:set \
-  DISCORD_TOKEN=your_discord_token \
-  GITHUB_PAT=your_github_pat \
-  GITHUB_REPO_OWNER=your_org \
-  GITHUB_REPO_NAME=your_repo \
-  GITHUB_PROJECT_NUMBER=1 \
-  OPENAI_API_KEY=your_openai_key
+heroku plugins:install heroku-config
+heroku config:push --overwrite  # Requires .env file
 ```
 
-3. **Enable Worker Dyno**
+3. Enable Worker Dyno
 ```bash
 heroku ps:scale worker=1
 ```
 
-4. **Monitor Logs**
+**First Deployment Checklist:**
 ```bash
-heroku logs --tail
+heroku logs --tail              # Monitor startup process
+heroku run echo $DISCORD_TOKEN  # Verify config vars
+heroku status                   # Check app health
 ```
 
 ## Bot Invitation 🤖
 
-1. Create application at [Discord Developer Portal](https://discord.com/developers/applications)
+1. **Create Discord Application:**
+   - Go to [Discord Developer Portal](https://discord.com/developers/applications)
+   - Create New Application → Name it → Copy "CLIENT ID"
 2. Navigate to OAuth2 → URL Generator
 3. Select scopes:
    - `applications.commands`
@@ -146,6 +170,7 @@ heroku logs --tail
 ```
 https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=2147535872&scope=bot%20applications.commands
 ```
+Replace `YOUR_CLIENT_ID` with your actual ID from Discord portal
 
 ## Debugging 🔍
 
@@ -166,7 +191,13 @@ heroku config # Verify environment variables
 heroku config:set LOG_LEVEL=debug # Enable verbose logging
 heroku run npm test # Run test script
 ```
-
 4. **Image Upload Issues**
 - Check attachment size limits (Discord: 8MB, GitHub: 10MB)
 - Verify image URLs in issue body
+
+## Contributing 🤝
+
+1. Fork the repo
+2. Create a new branch
+3. Make your changes and commit
+4. Push to your fork and create a PR
