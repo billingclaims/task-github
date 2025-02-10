@@ -99,3 +99,74 @@ Returns interactive embed with:
 - Discord server with enabled message intents
 - GitHub project board setup
 - OpenAI API access (GPT-4 recommended)
+
+## Heroku Deployment 🚀
+
+1. **Prepare Application**
+```bash
+heroku create your-app-name
+git push heroku main
+```
+
+2. **Set Configuration**
+```bash
+heroku config:set \
+  DISCORD_TOKEN=your_discord_token \
+  GITHUB_PAT=your_github_pat \
+  GITHUB_REPO_OWNER=your_org \
+  GITHUB_REPO_NAME=your_repo \
+  GITHUB_PROJECT_NUMBER=1 \
+  OPENAI_API_KEY=your_openai_key
+```
+
+3. **Enable Worker Dyno**
+```bash
+heroku ps:scale worker=1
+```
+
+4. **Monitor Logs**
+```bash
+heroku logs --tail
+```
+
+## Bot Invitation 🤖
+
+1. Create application at [Discord Developer Portal](https://discord.com/developers/applications)
+2. Navigate to OAuth2 → URL Generator
+3. Select scopes:
+   - `applications.commands`
+   - `bot`
+4. Bot permissions required:
+   - Send Messages
+   - Manage Threads
+   - Attach Files
+   - Read Message History
+
+**Invite URL:**
+```
+https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=2147535872&scope=bot%20applications.commands
+```
+
+## Debugging 🔍
+
+**Common Issues & Solutions:**
+
+1. **Bot Not Responding to Commands**
+```bash
+heroku restart # Recycle dynos
+heroku config # Verify environment variables
+```
+
+2. **Permission Errors**
+- Regenerate GitHub PAT with `repo` and `write:project` scopes
+- Ensure Discord bot has proper permissions in server
+
+3. **AI Generation Failures**
+```bash
+heroku config:set LOG_LEVEL=debug # Enable verbose logging
+heroku run npm test # Run test script
+```
+
+4. **Image Upload Issues**
+- Check attachment size limits (Discord: 8MB, GitHub: 10MB)
+- Verify image URLs in issue body
