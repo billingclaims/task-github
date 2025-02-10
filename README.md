@@ -1,0 +1,123 @@
+# GitHub Issue Management Bot 🤖
+
+A Discord bot that streamlines GitHub issue management with AI-powered issue creation and project tracking features.
+
+## Features ✨
+
+- **Slash Command Interface**
+  - `/create-issue`: Start an issue creation flow with AI assistance
+  - `/list-issues`: View open issues from GitHub project board
+  - `/test`: Verify bot connectivity
+
+- **AI-Powered Issue Generation**  
+  Uses GPT-4 to analyze user input and:
+  - Generate properly formatted issue descriptions
+  - Suggest appropriate labels
+  - Split complex requests into atomic issues
+  - Handle image attachments from Discord
+
+- **Project Management Integration**
+  - Real-time sync with GitHub Projects
+  - Status tracking (Backlog/In Progress/Done)
+  - Assignee filtering
+  - Rich embed previews with issue details
+
+## Installation ⚙️
+
+1. Clone repo:
+```bash
+git clone https://github.com/your-org/issue-bot.git
+cd issue-bot
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create `.env` file:
+```env
+DISCORD_TOKEN=your_discord_token
+GITHUB_PAT=your_github_pat
+GITHUB_REPO_OWNER=repo_owner
+GITHUB_REPO_NAME=repo_name
+GITHUB_PROJECT_NUMBER=123
+OPENAI_API_KEY=sk-your-key
+```
+
+4. Start bot:
+```bash
+npm run dev
+```
+
+## Usage 🚀
+
+### Creating Issues
+```bash
+/create-issue [preview:true|false]
+```
+1. Provide description in chat/DM
+2. Attach relevant screenshots
+3. Type `!done` when finished
+4. Review AI-generated preview
+5. Confirm or edit issues
+
+### Listing Issues
+```bash
+/list-issues [assignee:username]
+```
+Returns interactive embed with:
+- Issue statuses
+- Assignees
+- Description previews
+- Direct links to GitHub
+
+## Configuration 🔧
+
+| Env Variable | Purpose | 
+|--------------|---------|
+| `DISCORD_TOKEN` | Discord bot token |
+| `GITHUB_PAT` | GitHub Personal Access Token |
+| `GITHUB_REPO_OWNER` | Organization/username |
+| `GITHUB_REPO_NAME` | Repository name |
+| `GITHUB_PROJECT_NUMBER` | Project board number |
+| `OPENAI_API_KEY` | OpenAI API key |
+| `LOG_LEVEL` | (Optional) Logging verbosity |
+
+## Project Structure 🗂️
+
+Key implementation files:
+```javascript:src/bot.js
+startLine: 1
+endLine: 395
+```
+
+```javascript:src/utils/github-utils.js
+startLine: 1
+endLine: 171
+```
+
+```javascript:src/utils/openai-utils.js
+startLine: 1
+endLine: 152
+```
+
+```javascript:src/utils/logger.js
+startLine: 1
+endLine: 54
+```
+
+## Dependencies 📦
+
+- Discord.js v14
+- OpenAI API v4
+- Octokit (GitHub REST/GraphQL)
+- Zod (Schema validation)
+- Winston (Logging)
+
+## Requirements ✅
+
+- Node.js v18+
+- Discord server with enabled message intents
+- GitHub project board setup
+- OpenAI API access (GPT-4 recommended)
