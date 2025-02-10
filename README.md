@@ -148,6 +148,7 @@ heroku ps:scale worker=1
 ```bash
 heroku logs --tail              # Monitor startup process
 heroku run echo $DISCORD_TOKEN  # Verify config vars
+heroku ps:scale worker=1        # Ensure worker is enabled
 heroku status                   # Check app health
 ```
 
@@ -178,22 +179,27 @@ Replace `YOUR_CLIENT_ID` with your actual ID from Discord portal
 
 1. **Bot Not Responding to Commands**
 ```bash
-heroku restart # Recycle dynos
-heroku config # Verify environment variables
+heroku ps:scale worker=0  # Stop bot temporarily
+heroku ps:scale worker=1  # Restart bot
+heroku restart            # Alternative restart method
 ```
 
-2. **Permission Errors**
-- Regenerate GitHub PAT with `repo` and `write:project` scopes
-- Ensure Discord bot has proper permissions in server
-
-3. **AI Generation Failures**
+5. **Temporary Maintenance/Testing**
 ```bash
-heroku config:set LOG_LEVEL=debug # Enable verbose logging
-heroku run npm test # Run test script
+# Scale down for local testing
+heroku ps:scale worker=0 && npm run dev
+
+# Restore production after testing
+heroku ps:scale worker=1
 ```
-4. **Image Upload Issues**
-- Check attachment size limits (Discord: 8MB, GitHub: 10MB)
-- Verify image URLs in issue body
+
+**First Deployment Checklist:**
+```bash
+heroku logs --tail              # Monitor startup process
+heroku run echo $DISCORD_TOKEN  # Verify config vars
+heroku ps:scale worker=1        # Ensure worker is enabled
+heroku status                   # Check app health
+```
 
 ## Contributing 🤝
 
