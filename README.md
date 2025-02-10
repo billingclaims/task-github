@@ -84,28 +84,6 @@ Returns interactive embed with:
 | `OPENAI_API_KEY` | OpenAI API key |
 | `LOG_LEVEL` | (Optional) Logging verbosity |
 
-## Project Structure 🗂️
-
-Key implementation files:
-```javascript:src/bot.js
-startLine: 1
-endLine: 395
-```
-
-```javascript:src/utils/github-utils.js
-startLine: 1
-endLine: 171
-```
-
-```javascript:src/utils/openai-utils.js
-startLine: 1
-endLine: 152
-```
-
-```javascript:src/utils/logger.js
-startLine: 1
-endLine: 54
-```
 
 ## Dependencies 📦
 

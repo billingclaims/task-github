@@ -1,0 +1,33 @@
+{
+  "name": "task-discord",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "nodemon --watch src src/bot.js",
+    "test": "NODE_ENV=test node src/bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@discordjs/rest": "^2.4.2",
+    "@octokit/graphql": "^8.2.0",
+    "@octokit/rest": "^21.1.0",
+    "axios": "^1.7.9",
+    "discord-api-types": "^0.37.119",
+    "discord.js": "^14.17.3",
+    "form-data": "^4.0.1",
+    "langchain": "^0.3.15",
+    "octokit": "^4.1.1",
+    "openai": "^4.83.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "nodemon": "^3.1.9"
+  }
+}
