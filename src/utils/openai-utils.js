@@ -112,6 +112,7 @@ function buildMessages(text, imageContents) {
   }];
 }
 
+// Handle the AI stream and return the validated response
 async function handleAIStream(stream, channel) {
   let contentBuffer = '';
   const statusMessage = await channel.send('Starting generation...');

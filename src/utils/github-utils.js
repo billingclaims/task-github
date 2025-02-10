@@ -19,7 +19,7 @@ export async function createIssues(issues, assets) {
         owner: process.env.GITHUB_REPO_OWNER,
         repo: process.env.GITHUB_REPO_NAME,
         title: issue.title,
-        body: `${issue.body}\n\n${assets.images.map(url => `![image](${url})`).join('\n')}`,
+        body: `${issue.body}\n\n${assets.images.map(url => `<img src="${url}" width="60%" />`).join('\n')}`,
         labels: issue.labels
       });
       

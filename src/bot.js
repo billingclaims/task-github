@@ -4,7 +4,7 @@ import { createIssues, listOpenIssues } from './utils/github-utils.js';
 import { generateIssueContent, IssueSchema, IssueTemplates } from './utils/openai-utils.js';
 import { logger } from './utils/logger.js';
 
-// Initialize Discord Client
+// Initialize Discord Client with intents
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
