@@ -16,22 +16,22 @@ export const IssueSchema = z.array(
 // Add this above the generateIssueContent function
 export const IssueTemplates = {
     BUG: {
-      titlePrefix: '',
+      titlePrefix: '[BUG]',
       body: `## Description\n\n{{concise_summary}}\n\n## Steps to Reproduce\n1. {{step_1}}\n2. {{step_2}}\n3. {{step_3}}\n\n## Expected Behavior\n{{expected}}\n\n## Actual Behavior\n{{actual}}\n\n**Environment:**\n- OS: {{OS}}\n- Version: {{version}}`,
       labels: ['bug']
     },
     FEATURE: {
-      titlePrefix: '',
+      titlePrefix: '[FEATURE]',
       body: `## Problem Statement\n{{problem_description -- make this brief and concise}}\n\n## Proposed Solution\n{{solution_details}}\n\n## Alternatives Considered\n{{alternatives}}\n\n## Additional Context\n{{context}}`,
       labels: ['enhancement']
     },
     ENHANCEMENT: {
-      titlePrefix: '',
+      titlePrefix: '[ENHANCEMENT]',
       body: `## Current Behavior\n{{current_state}}\n\n## Proposed Improvement\n{{improvement_details}}\n\n## Expected Benefits\n{{benefits}}\n\n## Implementation Notes\n{{notes}}`,
       labels: ['enhancement']
     },
     PERFORMANCE: {
-      titlePrefix: '',
+      titlePrefix: '[PERFORMANCE]',
       body: `## Affected Component\n{{component}}\n\n## Current Performance\n{{metrics}}\n\n## Performance Targets\n{{targets}}\n\n## Benchmark Results\n{{results}}\n\n## Optimization Strategies\n{{strategies}}`,
       labels: ['performance']
     }
