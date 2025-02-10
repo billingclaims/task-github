@@ -160,12 +160,18 @@ function processProjectItems(items, statusField) {
   const backlogOption = statusField.options.find(o => o.name === 'Backlog');
   const doneOption = statusField.options.find(o => o.name === 'Done');
 
-  return items.filter(item => {
+  // Separate backlog items and others while preserving original order
+  const backlogItems = [];
+  const otherItems = [];
+  
+  items.forEach(item => {
     const status = item.fieldValueByName?.name;
-    return status && status !== doneOption?.name;
-  }).sort((a, b) => {
-    if (a.fieldValueByName?.optionId === backlogOption?.id) return -1;
-    if (b.fieldValueByName?.optionId === backlogOption?.id) return 1;
-    return 0;
+    if (status && status !== doneOption?.name) {
+      item.fieldValueByName?.optionId === backlogOption?.id 
+        ? backlogItems.push(item) 
+        : otherItems.push(item);
+    }
   });
+
+  return [...backlogItems, ...otherItems];
 } 
