@@ -207,3 +207,5 @@ heroku status                   # Check app health
 2. Create a new branch
 3. Make your changes and commit
 4. Push to your fork and create a PR
+
+--
