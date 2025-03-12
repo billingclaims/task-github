@@ -149,14 +149,13 @@ heroku config:push --overwrite  # Requires .env file
 
 3. Enable Worker Dyno
 ```bash
-heroku ps:scale worker=1
+heroku ps:scale web=0 worker=1 
 ```
 
 **First Deployment Checklist:**
 ```bash
 heroku logs --tail              # Monitor startup process
-heroku run echo $DISCORD_TOKEN  # Verify config vars
-heroku ps:scale worker=1        # Ensure worker is enabled
+heroku ps:scale web=0 worker=1  # Ensure worker is enabled
 heroku status                   # Check app health
 ```
 
@@ -188,7 +187,7 @@ Replace `YOUR_CLIENT_ID` with your actual ID from Discord portal
 1. **Bot Not Responding to Commands**
 ```bash
 heroku ps:scale worker=0  # Stop bot temporarily
-heroku ps:scale worker=1  # Restart bot
+heroku heroku ps:scale web=0 worker=1   # Restart bot
 heroku restart            # Alternative restart method
 ```
 
@@ -198,7 +197,7 @@ heroku restart            # Alternative restart method
 heroku ps:scale worker=0 && npm run dev
 
 # Restore production after testing
-heroku ps:scale worker=1
+heroku ps:scale web=0 worker=1 
 ```
 
 ## Contributing 🤝
