@@ -84,6 +84,14 @@ Returns interactive embed with:
 | `OPENAI_API_KEY` | OpenAI API key |
 | `LOG_LEVEL` | (Optional) Logging verbosity |
 
+**GitHub Token Permissions:**
+- Repository access: ✅ All repositories (or select private repos)
+- Permissions:
+  - Repo: Full control of private repositories
+  - Organization permissions: Read org and team membership, read org projects
+  - Account permissions: Full control of projects
+
+Create token at: [https://github.com/settings/tokens](https://github.com/settings/tokens)
 
 ## Dependencies 📦
 
@@ -191,14 +199,6 @@ heroku ps:scale worker=0 && npm run dev
 
 # Restore production after testing
 heroku ps:scale worker=1
-```
-
-**First Deployment Checklist:**
-```bash
-heroku logs --tail              # Monitor startup process
-heroku run echo $DISCORD_TOKEN  # Verify config vars
-heroku ps:scale worker=1        # Ensure worker is enabled
-heroku status                   # Check app health
 ```
 
 ## Contributing 🤝
